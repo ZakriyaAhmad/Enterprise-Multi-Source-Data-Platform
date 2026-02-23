@@ -1,40 +1,47 @@
 Enterprise Data Platform Modernization
 Multi-Source ELT Architecture (S3 + Redshift + Automated Governance)
 
-Project Overview
+Project Overview:
 Designed and implemented a production-grade enterprise data platform that ingests data from multiple operational systems (ERP, eCommerce, CRM, and external warehouse), validates and standardizes it in a governed data lake, and transforms it into analytics-ready datasets in Amazon Redshift.
 The platform supports:
-Incremental and full refresh loads
-Schema evolution handling
-Idempotent processing
-Automated data quality checks
-Enterprise audit and reconciliation framework
-Scalable ELT architecture
-Business-ready curated layer for BI & analytics
-Architecture Summary
+--> Incremental and full refresh loads
+--> Schema evolution handling
+--> Idempotent processing
+--> Automated data quality checks
+--> Enterprise audit and reconciliation framework
+--> Scalable ELT architecture
+--> Business-ready curated layer for BI & analytics
+
+Architecture Summary:
+
 Sources
-ERP APIs (Acumatica)
-Shopify (Orders, Customers, Products)
-HubSpot (Visits, Forms, User Metrics)
-Snowflake extract
+--> ERP APIs (Acumatica)
+--> Shopify (Orders, Customers, Products)
+--> HubSpot (Visits, Forms, User Metrics)
+--> Snowflake extract
+
 Core Stack
-Amazon S3 (Medallion Data Lake)
-Amazon Redshift (Staging + Curated)
-Lambda / Containerized extraction jobs
-Stored Procedures for ELT
-IAM-based secure COPY
-Audit & Logging Framework
-Business Problem
+--> Amazon S3 (Medallion Data Lake)
+--> Amazon Redshift (Staging + Curated)
+--> Lambda / Containerized extraction jobs
+--> Stored Procedures for ELT
+--> IAM-based secure COPY
+--> Audit & Logging Framework
+
+Business Problem:
+
 The organization faced:
-Fragmented data across SaaS platforms
-No centralized reporting layer
-Manual data pulls
-Schema changes breaking pipelines
-No data validation or reconciliation
-Performance bottlenecks in reporting
-Lack of audit & governance
+--> Fragmented data across SaaS platforms
+--> No centralized reporting layer
+--> Manual data pulls
+--> Schema changes breaking pipelines
+--> No data validation or reconciliation
+--> Performance bottlenecks in reporting
+--> Lack of audit & governance
 The goal was to build a scalable, production-ready, enterprise ELT platform.
-Solution Architecture
+
+Solution Architecture:
+
 1: Orchestration & Control Layer
 Implemented centralized job orchestration with:
 Dependency management
@@ -45,6 +52,7 @@ Alerting on failures
 Ensured fully automated and monitored data pipelines.
 
 2: Ingestion Layer
+
 Built API extraction services that handle:
 Incremental loads (watermark-based CDC)
 Pagination & rate limits
@@ -54,6 +62,7 @@ Dead letter queue for failures
 This ensures resilience and traceability.
 
 3: Medallion Data Lake (S3)
+
 Implemented a structured S3 layout:
 🔹 Bronze Layer (Raw)
 Immutable source JSON/CSV
@@ -70,6 +79,7 @@ Failed validations
 Data quality review tracking
 
 4: Data Quality & Schema Management Engine
+
 Designed automated validation framework:
 Column validation
 Null constraint checks
@@ -81,6 +91,7 @@ Validation metrics logging
 Prevented schema changes from breaking pipelines.
 
 5: Redshift Staging (Transient Layer)
+
 Implemented controlled reload pattern:
 Step 1: TRUNCATE staging
 Step 2: COPY from S3 validated layer
