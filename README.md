@@ -34,7 +34,7 @@ The architecture is designed for scalability, reliability, and enterprise govern
 
 
 
----<img width="1500" height="1500" alt="image (18)" src="https://github.com/user-attachments/assets/c63f88f1-8874-4144-9d67-49b277ab3fff" />
+---<img width="1000" height="1000" alt="image (18)" src="https://github.com/user-attachments/assets/c63f88f1-8874-4144-9d67-49b277ab3fff" />
 
 
 ###  Core Technology Stack
